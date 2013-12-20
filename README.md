@@ -3,6 +3,10 @@ BeaglePilot:
 
 An autopilot for BeagleBone (Black) based robots.
 
+Test Platforms:
+==============
+BeaglePilot is currently being tested using the following drones:
+- [Erle Robot](http://erlerobot.com)
 
 Contributors:
 =============

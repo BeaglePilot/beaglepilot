@@ -13,7 +13,7 @@ Contributors:
 
 - Víctor Mayoral Vilches <v.mayoralv@gmail.com>
 - Anuj Deshpande <anujdeshpande92@gmail.com>
-- sidbpurohit <sidbpurohit@gmail.com>
-- vekariya93 <vekariya93@gmail.com>
+- Siddharth Bharat Purohit <sidbpurohit@gmail.com>
+- Mitul Vekariya <vekariya93@gmail.com>
 
 

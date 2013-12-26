@@ -1,7 +1,7 @@
 BeaglePilot:
 =============
 
-An autopilot for BeagleBone (Black) based robots.
+An autopilot for Linux-based computers based on the BeagleBone (Black).
 
 Test Platforms:
 ==============

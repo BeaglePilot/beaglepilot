@@ -6,7 +6,6 @@ An autopilot for Linux-based computers based on the BeagleBone (Black).
 | Timeline | Anuj Deshpande| Siddharth Bharat Purohit| Víctor Mayoral Vilches |
 |----------|-------------- |-------------------------|------------------------|
 | Community Bonding (21st April - 19th May 4 weeks)| | | |
-
 | May 19th - May 25th | | | Hardware drivers coding (userspace) over the ArduPilot code (Linux kernel with RT_PREEMPT patches applied). |
 | May 26th - June 1st | | | Hardware drivers coding. |
 | June 2nd - June 8th | | | Code of hw tests. Make sure that all the hardware interfaces properly.| 

@@ -33,5 +33,9 @@ Contributors:
 - Siddharth Bharat Purohit <sidbpurohit@gmail.com>
 - Mitul Vekariya <vekariya93@gmail.com>
 
+Communication:
+==============
+- IRC Freenode #beaglepilot ([logs](http://logs.nslu2-linux.org/livelogs/beaglepilot/))
+- [BeaglePilot mailing list](https://groups.google.com/forum/#!forum/beaglepilot)
 
 [![Visit our IRC channel](https://kiwiirc.com/buttons/chat.freenode.net/beaglepilot.png)](https://kiwiirc.com/client/chat.freenode.net/?nick=beaglepilo|?#beaglepilot)

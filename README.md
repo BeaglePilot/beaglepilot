@@ -42,5 +42,6 @@ Communication & Resources:
 - [eLinux Wiki](http://elinux.org/BeagleBoard/GSoC/BeaglePilot)
 - [BeagleBoard project page](http://beagleboard.org/project/BeaglePilot/)
 - [ArduPilot Wiki](http://dev.ardupilot.com/wiki/beaglepilot/)
+- [BeaglePilot Blog](http://ardupilotbeaglebone.wordpress.com/)
 
 [![Visit our IRC channel](https://kiwiirc.com/buttons/chat.freenode.net/beaglepilot.png)](https://kiwiirc.com/client/chat.freenode.net/?nick=beaglepilo|?#beaglepilot)

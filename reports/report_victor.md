@@ -27,11 +27,11 @@ Community Bonding (21st April - 19th May 4 weeks):
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+    - hrt_absolute_time is PX4 specific. Check http://api.ning.com/files/hSOUK3FODot8zhNDso2dqdmI8P7ahYVaLApua6fxhIR2z*wHyKdcZbpMy9dQL0lqV7i70-m97kmofvccA-QaddUcAmWDPnD8/drv_hrtv1.c.
 
 - Plans for the next period:
-    - Go through Andrew's comments on the drivers coded so far.
-    - Rebase the code according to the last verson of ardupilot.
-    - Share progresses with I2C sensors. Publish material.
+    - Check Andrew's patch with new ideas for I2CDriver.
+    - Share progresses with I2C sensors. Publish material. Wire up the 10 DOF boards received and make some tests.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
     - Test the PRU PWM deeply. Study the integrations through the CLI.
     - Test the new DT

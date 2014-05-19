@@ -23,7 +23,7 @@ The following table pictures the status of the goals:
 | IDE Integration | WIP | 
 | Security | TBD |
 
-**Possible status: `TBD`, `WIP`, `Coded` and `Working`.
+Possible status: `TBD`, `WIP`, `Coded` and `Working`.
 
 Community Bonding (21st April - 19th May 4 weeks):
 ------
@@ -66,16 +66,16 @@ May 19th - May 25th
 - What has been accomplished?:
     - Tested PRU PWM in (not patched) kernel. Working good.
     - Issue between PRU and RT_PREEMPT kernel detected.
+    - Re-test MPU9150 driver after modifications. All but the tests picture a slight miss of the timings. This can be further inspected.
 
 - Issues:
-    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/).    
+    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo).
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
 
 - Plans for the next period:
     - Set up a Xenomai-patched Linux kernel and test whether there're issues with it as with the RT_PREEMPT one.
-    - Re-test MPU9150 driver after modifications.
     - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
     - Check Andrew's patch with new ideas for I2CDriver.
     - Modify the I2C driver to accept a bus number

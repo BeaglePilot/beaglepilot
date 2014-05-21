@@ -68,6 +68,7 @@ May 19th - May 25th
     - Issue between PRU and RT_PREEMPT kernel detected.
     - Re-test MPU9150 driver after modifications. All but the tests picture a slight miss of the timings. This can be further inspected.
     - MPU6000 SPI driver tested through the ardupilot/libraries/AP_InertialSensor/examples/MPU6000 test example. 
+    - I2CDriver updated. 
 
 - Issues:
     - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo).
@@ -77,10 +78,8 @@ May 19th - May 25th
 
 - Plans for the next period:
     - Set up a Xenomai-patched Linux kernel and test whether there're issues with it as with the RT_PREEMPT one.
-    - Check Andrew's patch with new ideas for I2CDriver.
     - Modify the I2C driver to accept a bus number
     - Review the RT_PREEMPT issue.
-    - Share progresses with I2C sensors. Publish material. Wire up the 10 DOF boards received and make some tests.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
     - Test the new DT (waiting for Anuj)
     - Test all the drivers (needs the DT)

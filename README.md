@@ -4,6 +4,36 @@ BeaglePilot:
 BeaglePilot project aims to create the first Linux-based autopilot for flying robots using the BeagleBone and the BeagleBone Black as the "hardware blueprint". For this purpose the project will focus on integrating ArduPilot (most popular autopilot) in the BeagleBone (Black). 
 
 
+Status
+------
+
+The following table sumarizes the *driver development status*:
+
+| Milestone | Status |
+| ----------|--------|
+| ArduPilot running in the BBB (I2C connected sensors) | Ok |
+| Device Tree for the PXF | WIP |
+| MPU6000 SPI userspace driver | Ok |
+| MPU9150 I2C userspace driver | Ok |
+| LSM9DS0 SPI userspace driver | Coded |
+| MPU9250 SPI userspace driver | Coded |
+| MS5611 I2C/SPI userspace driver | Coded |
+| GPIO userspace driver | WIP |
+| I2CDriver multi-bus aware | WIP |
+| AP_InertialSensor_Linux | ToDo |
+| PRU PWM driver | Ok ([issue](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo) with the PREEMPT_RT kernel) |
+| MPU6000 SPI kernel driver | WIP |
+| MPU9150 I2C kernel driver | ToDo |
+| LSM9DS0 SPI kernel driver | ToDo |
+| MPU9250 SPI kernel driver | ToDo |
+| MS5611 I2C/SPI kernel driver | ToDo |
+
+
+*Status: `Ok`, `Coded` (needs test), `WIP` (work in progress), `Issue`, `ToDo`*
+
+GSOC Frame:
+-------------
+
 | Timeline | Anuj Deshpande| Siddharth Bharat Purohit| Víctor Mayoral Vilches |
 |----------|-------------- |-------------------------|------------------------|
 | **Community Bonding** (21st April - 19th May 4 weeks)|Have already begun interacting with the community on ardupilot-discuss, #beaglepilot.Would be possible to being working in the “community bonding” period. | Coding started and trying to pull the timeline as up as possible leaving voids to do more :)| Already started coding and the discussion at #beaglepilot (Freenode). The mentors provided great feedback and tutorials to get started. The goal will be to get familiar with ArduPilot and start coding drivers (userspace ones at the beginning) for the hardware to be used (PixHawk Fire Cape). |
@@ -22,21 +52,13 @@ BeaglePilot project aims to create the first Linux-based autopilot for flying ro
 | August 11th - August 18th | Final evaluations |Live Test and Documentation | Wrap-up, documentation and delivery. |
 
 Test Platforms:
-==============
+-----------
 BeaglePilot is currently being tested using the following drones:
 - [Erle Robot](http://erlerobot.com)
 - BeagleBone Black + PixHawk Fire Cape
 
-Contributors:
-=============
-
-- Víctor Mayoral Vilches <v.mayoralv@gmail.com>
-- Anuj Deshpande <anujdeshpande92@gmail.com>
-- Siddharth Bharat Purohit <sidbpurohit@gmail.com>
-- Mitul Vekariya <vekariya93@gmail.com>
-
 Communication & Resources:
-==============
+--------------
 - IRC Freenode #beaglepilot ([logs](http://logs.nslu2-linux.org/livelogs/beaglepilot/))
 - [BeaglePilot mailing list](https://groups.google.com/forum/#!forum/beaglepilot)
 - [eLinux Wiki](http://elinux.org/BeagleBoard/GSoC/BeaglePilot)

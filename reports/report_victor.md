@@ -60,7 +60,7 @@ Community Bonding (21st April - 19th May 4 weeks):
     - Ideas about the new AP_HAL_Linux
 
 
-May 19th - May 25th
+First Week
 ------
 
 - What has been accomplished?:
@@ -68,16 +68,15 @@ May 19th - May 25th
     - Issue between PRU and RT_PREEMPT kernel detected.
     - Re-test MPU9150 driver after modifications. All but the tests picture a slight miss of the timings. This can be further inspected.
     - MPU6000 SPI driver tested through the ardupilot/libraries/AP_InertialSensor/examples/MPU6000 test example. 
-    - I2CDriver updated. 
 
 - Issues:
-    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo).
+    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). 
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
 
 - Plans for the next period:
-    - Set up a Xenomai-patched Linux kernel and test whether there're issues with it as with the RT_PREEMPT one.
+    - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
     - Modify the I2C driver to accept a bus number
     - Review the RT_PREEMPT issue.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
@@ -86,3 +85,31 @@ May 19th - May 25th
     - Test GPS hardware.
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
     - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
+
+
+Second Week
+------
+
+- What has been accomplished?:
+    - I2CDriver updated. 
+    - Xenomai kernel and modules deployed. The Xenomai kernel doesn't suffer from the errors that the RT_PREEMPT does.
+    - PWM generation using the PRU driver tested. Refer to [this post](http://erlerobot.com/blog/beaglepilot-testing-pwm-pru/).
+
+- Issues:
+    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals).
+    - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+
+- Plans for the next period:
+    - Review the AP_Motors library. Doesn't seem to work properly with AP_HAL_Linux
+    - Modify the I2C driver to accept a bus number
+    - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
+    - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
+    - Test the new DT (waiting for Anuj)
+    - Test all the drivers (needs the DT)
+    - Test GPS hardware.
+    - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
+    - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
+
+

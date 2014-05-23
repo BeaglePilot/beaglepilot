@@ -102,8 +102,10 @@ Second Week
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
 
 - Plans for the next period:
+    - Compile vanilla kernel
     - Review the AP_Motors library. Doesn't seem to work properly with AP_HAL_Linux
     - Modify the I2C driver to accept a bus number
+    - Review the PREEMPT_RT bug.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
     - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
     - Test the new DT (waiting for Anuj)

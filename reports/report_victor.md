@@ -95,14 +95,13 @@ Second Week
     - Xenomai kernel and modules deployed. The Xenomai kernel doesn't suffer from the errors that the RT_PREEMPT does.
     - PWM generation using the PRU driver tested. Refer to [this post](http://erlerobot.com/blog/beaglepilot-testing-pwm-pru/).
     - Tested the RCOutput Linux layer. Seem to work fine.
+    - RCOuput Software and Hardware tested together. RCOutput works fine. Several SimonK firmware ESCs work perfectly with the AP_Linux_HAL.
 
 - Issues:
     - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals).
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
-    - Issue with AP_Motors_test.pde. In function motor_order_test i == 2 makes motor 1 spin. Look this up.
-    - There should be a way to stop the PWM (probably writting 1 in the pwmxx/run). motors.armed()?
 
 - Plans for the next period:
     - Compile vanilla kernel

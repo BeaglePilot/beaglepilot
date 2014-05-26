@@ -102,6 +102,8 @@ Second Week
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+    - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
+    - How do we implemment CS?.
 
 - Plans for the next period:
     - Compile vanilla kernel

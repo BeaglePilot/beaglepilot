@@ -75,7 +75,7 @@ First Week
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
 
-- Plans for the next period:
+- Plans for the next period (this is a list of tasks for the author):
     - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
     - Modify the I2C driver to accept a bus number
     - Review the RT_PREEMPT issue.
@@ -96,6 +96,7 @@ Second Week
     - PWM generation using the PRU driver tested. Refer to [this post](http://erlerobot.com/blog/beaglepilot-testing-pwm-pru/).
     - Tested the RCOutput Linux layer. Seem to work fine.
     - RCOuput Software and Hardware tested together. RCOutput works fine. Several SimonK firmware ESCs work perfectly with the AP_Linux_HAL.
+    - AP_Motors tested with Erle Robot. Refer to https://www.youtube.com/watch?v=7J2JYUvwl-4.
 
 - Issues:
     - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals).
@@ -105,7 +106,7 @@ Second Week
     - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
     - How do we implemment CS?.
 
-- Plans for the next period:
+- Plans for the next period (this is a list of tasks for the author):
     - Compile vanilla kernel
     - Modify drivers according to the new GPIO layer. Test them.
     - Modify the I2C driver to accept a bus number

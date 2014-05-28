@@ -104,13 +104,16 @@ Second Week
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
     - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
-    - How do we implemment CS?.
 
 - Plans for the next period (this is a list of tasks for the author):
+    - Fix the old CS select method (MPU6K).
     - Compile vanilla kernel
     - Modify drivers according to the new GPIO layer. Test them.
+    - Code CS according to tridge's comments.
     - Modify the I2C driver to accept a bus number
+    - Test the performances using the logs. Refer to https://groups.google.com/forum/#!topic/drones-discuss/7DKcdm0AEPo
     - Review the PREEMPT_RT bug.
+    - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
     - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
     - Test the new DT (waiting for Anuj)

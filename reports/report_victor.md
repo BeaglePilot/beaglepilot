@@ -128,6 +128,7 @@ Third Week
 ------
 
 - What has been accomplished?:
+    - Preliminary RT tests with rt-tests (http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git/) available [here](http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git/).
 
 - Issues:
     - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals).
@@ -137,18 +138,17 @@ Third Week
     - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
 
 - Plans for the next period (this is a list of tasks for the author):
-    - Compile vanilla kernel
-    - Write down in a post the conclussions from the RT_PREEMPT analysis. Use the information from this post https://groups.google.com/forum/#!topic/beagleboard/gJ_iFT2IwEQ.
     - Modify drivers according to the new GPIO layer. Test them.
     - Code CS according to tridge's comments.
-    - Modify the I2C driver to accept a bus number
+    - Test all the drivers
+    - Compile vanilla kernel. With and without PREEMPT option activated.
+    - Write down in a post the conclussions from the RT_PREEMPT analysis. Use the information from this post https://groups.google.com/forum/#!topic/beagleboard/gJ_iFT2IwEQ.
     - Test the performances using the logs. Refer to https://groups.google.com/forum/#!topic/drones-discuss/7DKcdm0AEPo
+    - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Review the PREEMPT_RT bug.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
-    - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
-    - Test the new DT (waiting for Anuj)
-    - Test all the drivers (needs the DT)
+    - Test all the drivers
     - Test GPS hardware.
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
     - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.

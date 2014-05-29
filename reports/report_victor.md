@@ -108,6 +108,37 @@ Second Week
 - Plans for the next period (this is a list of tasks for the author):
     - Fix the old CS select method (MPU6K).
     - Compile vanilla kernel
+    - Write down in a post the conclussions from the RT_PREEMPT analysis. Use the information from this post https://groups.google.com/forum/#!topic/beagleboard/gJ_iFT2IwEQ.
+    - Modify drivers according to the new GPIO layer. Test them.
+    - Code CS according to tridge's comments.
+    - Modify the I2C driver to accept a bus number
+    - Test the performances using the logs. Refer to https://groups.google.com/forum/#!topic/drones-discuss/7DKcdm0AEPo
+    - Review the PREEMPT_RT bug.
+    - Make the drivers platform agnostic.
+    - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
+    - Code kernel drivers. Start checking the MPU6000. The MS5611 could be started from the BMP085 driver.
+    - Test the new DT (waiting for Anuj)
+    - Test all the drivers (needs the DT)
+    - Test GPS hardware.
+    - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
+    - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
+
+
+Third Week
+------
+
+- What has been accomplished?:
+
+- Issues:
+    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals).
+    - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+    - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
+
+- Plans for the next period (this is a list of tasks for the author):
+    - Compile vanilla kernel
+    - Write down in a post the conclussions from the RT_PREEMPT analysis. Use the information from this post https://groups.google.com/forum/#!topic/beagleboard/gJ_iFT2IwEQ.
     - Modify drivers according to the new GPIO layer. Test them.
     - Code CS according to tridge's comments.
     - Modify the I2C driver to accept a bus number

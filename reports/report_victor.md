@@ -136,9 +136,11 @@ Third Week
     - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
     - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
+    - How do we handle battery issues in the PXF hardware?
 
 - Plans for the next period (this is a list of tasks for the author):
     - script for cs activation
+    - Take a look at Sid's conflicting pin
     - Make video with showing MPU6K working.
     - add hal.console->printf("got _drdy_pin=%p\n", _drdy_pin);    in MPU6000. Review Phil's board with Tridge changes.
     - Learn how to compile with vim.

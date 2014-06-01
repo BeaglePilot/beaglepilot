@@ -137,6 +137,7 @@ Third Week
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
     - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
     - How do we handle battery issues in the PXF hardware?
+    - It seems that the CS at SPI1 is not working as expected. MPU6000 always take the bus.
 
 - Plans for the next period (this is a list of tasks for the author):
     - script for cs activation
@@ -147,7 +148,7 @@ Third Week
     - Code CS according to tridge's comments.
     - Test all the drivers
     - Compile kernels. With and without PREEMPT option activated.
-        * Grab vanilla 3.14
+        * Grab vanilla 3.12 (3.14 doesn't support CPUfreq scaling).
         * Vanilla with PREEMPT option
         * RT_PREEMPT 
     - Read and understand properly http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git/

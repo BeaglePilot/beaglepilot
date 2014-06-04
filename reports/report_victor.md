@@ -16,8 +16,8 @@ The following table pictures the status of the goals:
 | MPU-9150 (I2C) userspace driver (extra) | Working |
 | MPU-9250 (SPI) userspace driver | Coded |
 | LSM9DS0 (SPI) userspace driver | Coded |
-| PRU PWM | WIP |
-| Realtime Comparison | TBD |
+| PRU PWM | Working |
+| Realtime Comparison | Working (Done) |
 | ROS tests with `mavlink_ros` | TBD |
 | ROS bridge coded directly in the ArduPilot | TBD |
 | IDE Integration | WIP | 

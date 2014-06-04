@@ -129,31 +129,25 @@ Third Week
 
 - What has been accomplished?:
     - Preliminary RT tests with rt-tests (http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git/) available [here](http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git/).
+    - Enable and check CS scripts created. Available [here](https://gist.github.com/vmayoral/5b5fe683bacecdc710f7).
+    - Video showing two working tests with the SPI sensors https://www.youtube.com/watch?v=sXsauhNKwdc.
+    - SPI CS capabilities implemmented in the ardupilot AP_HAL_Linux layer.
+    - Video picturing the chip select (CS) capabilities integrated in BeaglePilot https://www.youtube.com/watch?v=W70Erro1A5Y&feature=youtu.be
+    - Tests with MPU6000 kernel module https://groups.google.com/forum/#!topic/drones-discuss/CiVyGNVFqsE. 
+    - Real-Time evaluation with 4 kernels. Results published http://erlerobot.com/blog/beaglepilot-cyclictests-different-kernels/.
+    - Issue with the overlays fixed by Sid. 
 
 - Issues:
-    - RT_PREEMPT kernel and PRU seem to conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
-    - Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
-    - Issue with the overlays. PRU and BB-SPI1-SWP-01 conflict.
-    - How do we handle battery issues in the PXF hardware?
-    - It seems that the CS at SPI1 is not working as expected. MPU6000 always take the bus.
+    - SPI Barometer and IMU run fine separately. When used together with ArduCopter the Baro crashes. Refer to https://groups.google.com/forum/#!topic/drones-discuss/pokYZT4wYvs.
 
 - Plans for the next period (this is a list of tasks for the author):
-    - script for cs activation
-    - Take a look at Sid's conflicting pin
-    - Make video with showing MPU6K working.
-    - add hal.console->printf("got _drdy_pin=%p\n", _drdy_pin);    in MPU6000. Review Phil's board with Tridge changes.
-    - Learn how to compile with vim.
-    - Code CS according to tridge's comments.
-    - Test all the drivers
-    - Compile kernels. With and without PREEMPT option activated.
-        * Grab vanilla 3.12 (3.14 doesn't support CPUfreq scaling).
-        * Vanilla with PREEMPT option
-        * RT_PREEMPT 
-    - Read and understand properly http://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git/
-    - Write down in a post the conclussions from the RT_PREEMPT analysis. Use the information from this post https://groups.google.com/forum/#!topic/beagleboard/gJ_iFT2IwEQ.
-    - Test the performances using the logs. Refer to https://groups.google.com/forum/#!topic/drones-discuss/7DKcdm0AEPo
+    - Go through Tridge and Roberto's comments for the MS5611.
+    - Look at the SPI MS5611 behaviour with ArduCopter.
+    - Flight tests
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers

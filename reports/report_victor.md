@@ -155,3 +155,37 @@ Third Week
     - Test GPS hardware.
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
     - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
+
+Fourth Week
+------
+
+- What has been accomplished?:
+    - SPIDriver updated
+    - ardupilot code now working :). https://www.youtube.com/watch?v=duaSfuF_QbA&feature=youtu.be
+
+- Issues:
+    - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    - I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+
+
+- Plans for the next period (this is a list of tasks for the author):
+    - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
+    - Flight tests
+    - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
+    - Make the drivers platform agnostic.
+    - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
+    - Test all the drivers
+    - Test GPS hardware.
+    - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
+    - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
+
+- Comments for the meeting:
+    - Scripts Andrews asked for are now available at Tools/PXF
+    - Where are SPI_MODE_3, SPI_MODE_0 defined? Meaning?
+    - Barometer seems works fine? (contrast the mb) but IMU not. Could be that since just the MS5611 is working the conflicts that I observe in
+      my board still make sense.
+    - Why always L3G4200D?
+
+

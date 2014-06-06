@@ -162,6 +162,7 @@ Fourth Week
 - What has been accomplished?:
     - SPIDriver updated
     - ardupilot code now working :). https://www.youtube.com/watch?v=duaSfuF_QbA&feature=youtu.be
+    - First tests with MAVProxy https://gist.github.com/vmayoral/d48f94b2f5bcc6289b99
 
 - Issues:
     - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
@@ -171,8 +172,23 @@ Fourth Week
 
 
 - Plans for the next period (this is a list of tasks for the author):
-    - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
+    - Test with another serial port
+    - grab APM2
+    - fixes to the MPU6000 test
+    - stick kernels an configs into a git
+    - getty issue. Ready about runlevels. Check Ubuntu distro and what's going on with it.
+    - SPI_MODE0,3 can be checked in the Wikipedia
+    - Include FRAM as the SPI. Changes in stash, the HEAD was at ca07ae7
+    - sim_vehicle.sh screipt for options handling.
     - Flight tests
+    - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
+    - "UART-like TCP sockets". Check AP_HAL_AVR_SITL/UARTDriver.cpp _tcp_start_connection(). Make the private member function members. When the init func. is called you pass the string, see if it's an ordinary serial port. If it's TCP wire with SITL methods, do it with a switch. Reconect has to be handled because TCP is a stream and might close (serial doesn't close). When you reopen the stream you need to listen for the connection again. When you don't have a conection you through away the data and reconect. 
+    ArduCopter.elf -A tcp:192.168.2.15:1243:wait, "wait" linked to wait_for_connection SITL arg
+    
+    Next step is ArduCopter.elf -A tcp:*:1243:wait.
+
+    UART and TCP are stream oriented while UDP is not. Actually the right way is UDP. Long term goal.
+
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
@@ -181,11 +197,9 @@ Fourth Week
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
     - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
 
-- Comments for the meeting:
+- Comments for the BeaglePilot meeting:
     - Scripts Andrews asked for are now available at Tools/PXF
     - Where are SPI_MODE_3, SPI_MODE_0 defined? Meaning?
-    - Barometer seems works fine? (contrast the mb) but IMU not. Could be that since just the MS5611 is working the conflicts that I observe in
-      my board still make sense.
+    - MAVProxy tests https://gist.github.com/vmayoral/d48f94b2f5bcc6289b99
+    - Discussion about the 
     - Why always L3G4200D?
-
-

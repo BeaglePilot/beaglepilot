@@ -163,6 +163,8 @@ Fourth Week
     - SPIDriver updated
     - ardupilot code now working :). https://www.youtube.com/watch?v=duaSfuF_QbA&feature=youtu.be
     - First tests with MAVProxy https://gist.github.com/vmayoral/d48f94b2f5bcc6289b99
+    - MAVProxy interfaced with the BeagleBone http://diydrones.com/profiles/blogs/beaglepilot-mavproxy-connection-now-working.
+
 
 - Issues:
     - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
@@ -172,6 +174,7 @@ Fourth Week
 
 
 - Plans for the next period (this is a list of tasks for the author):
+    - Grab sharedscreen https://github.com/tridge/junkcode/tree/master/screen
     - Test with another serial port
     - grab APM2
     - fixes to the MPU6000 test

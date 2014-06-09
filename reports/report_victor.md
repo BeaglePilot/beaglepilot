@@ -164,6 +164,10 @@ Fourth Week
     - ardupilot code now working :). https://www.youtube.com/watch?v=duaSfuF_QbA&feature=youtu.be
     - First tests with MAVProxy https://gist.github.com/vmayoral/d48f94b2f5bcc6289b99
     - MAVProxy interfaced with the BeagleBone http://diydrones.com/profiles/blogs/beaglepilot-mavproxy-connection-now-working.
+    - Tested new PRU PWM method via mmap with ESCs and motors.
+    - Added FRAM to the SPIDriver.
+    - Started coding the UART-like TCP sockets.
+
 
 
 - Issues:
@@ -175,9 +179,6 @@ Fourth Week
 
 - Plans for the next period (this is a list of tasks for the author):
     - fixes to the MPU6000 test
-    - stick kernels an configs into a git
-    - SPI_MODE0,3 can be checked in the Wikipedia
-    - Include FRAM as the SPI. Changes in stash, the HEAD was at ca07ae7
     - "UART-like TCP sockets". Check AP_HAL_AVR_SITL/UARTDriver.cpp _tcp_start_connection(). Make the private member function members. When the init func. is called you pass the string, see if it's an ordinary serial port. If it's TCP wire with SITL methods, do it with a switch. Reconect has to be handled because TCP is a stream and might close (serial doesn't close). When you reopen the stream you need to listen for the connection again. When you don't have a conection you through away the data and reconect. 
     ArduCopter.elf -A tcp:192.168.2.15:1243:wait, "wait" linked to wait_for_connection SITL arg
     
@@ -187,7 +188,6 @@ Fourth Week
 
     - Flight tests
     - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
-    - Grab sharedscreen https://github.com/tridge/junkcode/tree/master/screen
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers

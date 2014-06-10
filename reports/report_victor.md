@@ -166,15 +166,14 @@ Fourth Week
     - MAVProxy interfaced with the BeagleBone http://diydrones.com/profiles/blogs/beaglepilot-mavproxy-connection-now-working.
     - Tested new PRU PWM method via mmap with ESCs and motors.
     - Added FRAM to the SPIDriver.
-    - Started coding the UART-like TCP sockets.
-
-
+    - Coded UART-like TCP sockets.
 
 - Issues:
     - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
     - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     - I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+    - For some reason ArduCopter CLI works great when launched at ttyO4 while not in ttyO5.
 
 
 - Plans for the next period (this is a list of tasks for the author):
@@ -185,7 +184,7 @@ Fourth Week
     Next step is ArduCopter.elf -A tcp:*:1243:wait.
 
     UART and TCP are stream oriented while UDP is not. Actually the right way is UDP. Long term goal.
-
+    - Set up SITL in the BBB
     - Flight tests
     - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.

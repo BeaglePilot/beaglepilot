@@ -193,8 +193,16 @@ Fifth Week
 ------
 
 - What has been accomplished?:
-    - UART-like TCP sockets.
-    - MAVLink introduction.
+    - UART-like TCP sockets coded.
+    - MAVLink introduction http://erlerobotics.gitbooks.io/erlerobot/en/mavlink.html.
+    - MAVProxy introduction http://erlerobotics.gitbooks.io/erlerobot/en/mavproxy.html.
+    - ROS short-reminder http://erlerobotics.gitbooks.io/erlerobot/en/rostutorials.html
+    - ROS integrations different methods installed http://erlerobotics.gitbooks.io/erlerobot/en/mavlinkros.html
+        - `mavlink_ros`
+        - `autopilot_bridge`
+        - `mavros`
+        - `roscopter`
+
 
 - Issues:
     - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
@@ -207,41 +215,26 @@ Fifth Week
             RCOutput: PWM Write Failed!
             RCOutput: PWM Write Failed!
             RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-
-
+            ...
+    - UART-like TCP sockets https://www.youtube.com/watch?v=fuiyHRnx2LU
+    - var SERVO_OUTPUT_RAW always with the same value
 
 - Plans for the next period (this is a list of tasks for the author):
-    - Install SITL in VM. debug UART-like TCP sockets for the specific IP case. Make video and figure out what's going on.
+    - strace the UART-like TCP ports
+    - Evaluate and compare the different ROS integration mechanisms (mavlink_ros, autopilot_bridge, mavros)
+    - Review SERVO_OUTPUT_RAW, RCInput and RCOutput.
     - testing MS5611 kernel driver
-    - mavlink_ros
-    - ROS integration analysis conclusions:
-        - mavlink_ros is a serial-to-ROS interface necessary for when ardupilot had no other way to communicate but serial ports. Now that BeaglePilot runs on a fully capable Linux machine, with ROS running on itself, ROS integration can be implemmented in several ways:
-            + Continue with the mavlink_ros strategy and make ROS talk to Ardupilot through a serial port communication (as far as i've understood mavlink_ros actually implemments a UART-like TCP bridge, serializing packages and de-serializing them to satisfy both ends needs).
-            + With ROS running on a Linux-machine it's not mandatory anymore to use serial interfaces for communicating with ROS thereby TCP options are a valid solution. A ROS package could be created that interprets MAVLink messages and pushes the information to ROS nodes. This package would be a simplification of "mavlink_ros" without the need of serialization of the packages. (e.g.: mavlink_ros_bridge)
-            + Create a BeaglePilot-ROS bridge directly into the code (implementated as a task?) that pushes the sensor information directly to the ROS nodes (using the ROS APIs). This would allow to avoid using MAVLink but rely solely on the abstract ROS communication interface. (e.g.: ros_beaglepilot)
-            
+    - Data from http://uav.tridgell.net/BeaglePilot grab the csv
     - Implement in the UART-like TCP sockets the "*" option.
     - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
     - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
-    - Test all the drivers
-    - Test GPS hardware.
+    - Test all the other drivers
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
-    - Review the possibility of creating a RCOutput code that relies on the eHRPWM instead.
 
-
-    ROS bridge through UART-like TCP. easy!. Take a look that.
-    include overlays in the tree
-    put all the initializing stuff in the git tree
-    code shouldn't die when no port is provided at TCP-like UART
-    if "wait" is not provided it shouldn0t die
-    http://uav.tridgell.net/BeaglePilot grab the csv
+Questions for the meeting:
+    - UART-like TCP working or not? strace it.
+    - STABILIZE mode doesn't seem to change motor speeds. Motor speeds at the minimum stablished 1100.
+    - Why SERVO_OUTPUT_RAW is always the same value (1100)

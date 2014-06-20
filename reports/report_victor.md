@@ -205,22 +205,59 @@ Fifth Week
 
 
 - Issues:
-    - RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
-    - Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
-    - I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
-    - Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
-    - For some reason ArduCopter CLI works great when launched at ttyO4 while not in ttyO5. Probably some hardware related issue
-    - Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
-    - ArduPlane makes the board gets stucked. A lot of messages with:
+    - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - (* out-of-gsoc-scope *) Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - (* out-of-gsoc-scope *) Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+    - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
+    - (* out-of-gsoc-scope *) ArduPlane makes the board gets stucked. A lot of messages with:
             RCOutput: PWM Write Failed!
             RCOutput: PWM Write Failed!
             RCOutput: PWM Write Failed!
             ...
-    - UART-like TCP sockets https://www.youtube.com/watch?v=fuiyHRnx2LU
-    - var SERVO_OUTPUT_RAW always with the same value
+    - (* out-of-gsoc-scope *) UART-like TCP sockets https://www.youtube.com/watch?v=fuiyHRnx2LU
+    - (* out-of-gsoc-scope *) var SERVO_OUTPUT_RAW always with the same value
 
 - Plans for the next period (this is a list of tasks for the author):
-    - strace the UART-like TCP ports
+    - Evaluate and compare the different ROS integration mechanisms (mavlink_ros, autopilot_bridge, mavros)
+    - Review SERVO_OUTPUT_RAW, RCInput and RCOutput.
+    - testing MS5611 kernel driver
+    - Data from http://uav.tridgell.net/BeaglePilot grab the csv
+    - Implement in the UART-like TCP sockets the "*" option.
+    - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
+    - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
+    - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
+    - Make the drivers platform agnostic.
+    - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
+    - Test all the other drivers
+    - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
+
+Sixth Week
+------
+
+- What has been accomplished?:
+    - Joined a group effort to create a ROS Micro Air Vehicle Joint Standard API https://docs.google.com/document/d/11ZwqL-NcykNdWGy9333ETJoiNyxBO6z2f9NIVAfcTFo/edit?usp=sharing
+    - SYS_BOOT pins of the PXF evaluated. An eventual option could be to remove two of the level translators (the ones taking care of generating ch5-13 from the PRU and UART4 and UART5.
+    - UART-like TCP sockets finally fixed. Refer to https://github.com/BeaglePilot/ardupilot/commit/26476dc14832d2c89110ae79d68d2884b5ed97b0
+    - Corrections to UARTDriver
+
+
+
+- Issues:
+    - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - (* out-of-gsoc-scope *) Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - (* out-of-gsoc-scope *) Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
+    - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
+    - (* out-of-gsoc-scope *) ArduPlane makes the board gets stucked. A lot of messages with:
+            RCOutput: PWM Write Failed!
+            RCOutput: PWM Write Failed!
+            RCOutput: PWM Write Failed!
+    - (* out-of-gsoc-scope *) var SERVO_OUTPUT_RAW always with the same value
+    - (* out-of-gsoc-scope *) Serial connection (through ttyO*) doesn't work the first time (e.g. if arducopter started from ttyO4 and mavproxy from ttyO5, first time doesn't work, weird characters appeared. If the connection is launched the other way arducopter ttyO5 and mavproxy from ttyO4 then it works). Needs to be further inspected.
+    - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
+
+- Plans for the next period (this is a list of tasks for the author):
     - Evaluate and compare the different ROS integration mechanisms (mavlink_ros, autopilot_bridge, mavros)
     - Review SERVO_OUTPUT_RAW, RCInput and RCOutput.
     - testing MS5611 kernel driver
@@ -235,6 +272,5 @@ Fifth Week
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
 Questions for the meeting:
-    - UART-like TCP working or not? strace it.
-    - STABILIZE mode doesn't seem to change motor speeds. Motor speeds at the minimum stablished 1100.
-    - Why SERVO_OUTPUT_RAW is always the same value (1100)
+    - "height" messages?
+    - LOOP speed in param?

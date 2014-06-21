@@ -240,7 +240,10 @@ Sixth Week
     - SYS_BOOT pins of the PXF evaluated. An eventual option could be to remove two of the level translators (the ones taking care of generating ch5-13 from the PRU and UART4 and UART5.
     - UART-like TCP sockets finally fixed. Refer to https://github.com/BeaglePilot/ardupilot/commit/26476dc14832d2c89110ae79d68d2884b5ed97b0
     - Corrections to UARTDriver
-
+    - Evaluated performance of the autopilot with different working rates (param set SCHED_DEBUG 1):
+        + 400 Hz: PERF: 3998/4000 8807
+        + 100 Hz: PERF: 0/1000 10317
+    - Attitude evaluation started. y axis seems inverted.
 
 
 - Issues:
@@ -258,6 +261,7 @@ Sixth Week
     - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
 
 - Plans for the next period (this is a list of tasks for the author):
+    - tests Sids commit with the scope
     - Evaluate and compare the different ROS integration mechanisms (mavlink_ros, autopilot_bridge, mavros)
     - Review SERVO_OUTPUT_RAW, RCInput and RCOutput.
     - testing MS5611 kernel driver
@@ -274,3 +278,8 @@ Sixth Week
 Questions for the meeting:
     - "height" messages?
     - LOOP speed in param?
+    - Why when recompiling it takes so much? Seems like compiles everything once again.
+    - Why when recompiling ArduPilot/ArduPlane the .elf is not updated? Furthermore it takes as much as compiling from a clean status. 
+    - PERF
+    - What's the best way of inverting the y axis?
+    - Attitude interpretation?

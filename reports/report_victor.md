@@ -243,7 +243,7 @@ Sixth Week
     - Evaluated performance of the autopilot with different working rates (param set SCHED_DEBUG 1):
         + 400 Hz: PERF: 3998/4000 8807
         + 100 Hz: PERF: 0/1000 10317
-    - Attitude evaluation started. y axis seems inverted.
+    - Attitude evaluation started. y axis seems inverted. https://groups.google.com/forum/#!topic/drones-discuss/R2u0j-QCUe8
 
 
 - Issues:
@@ -259,6 +259,7 @@ Sixth Week
     - (* out-of-gsoc-scope *) var SERVO_OUTPUT_RAW always with the same value
     - (* out-of-gsoc-scope *) Serial connection (through ttyO*) doesn't work the first time (e.g. if arducopter started from ttyO4 and mavproxy from ttyO5, first time doesn't work, weird characters appeared. If the connection is launched the other way arducopter ttyO5 and mavproxy from ttyO4 then it works). Needs to be further inspected.
     - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
+
 
 - Plans for the next period (this is a list of tasks for the author):
     - tests Sids commit with the scope
@@ -280,6 +281,8 @@ Questions for the meeting:
     - LOOP speed in param?
     - Why when recompiling it takes so much? Seems like compiles everything once again.
     - Why when recompiling ArduPilot/ArduPlane the .elf is not updated? Furthermore it takes as much as compiling from a clean status. 
-    - PERF
+    - Discuss PERF results
     - What's the best way of inverting the y axis?
     - Attitude interpretation?
+    - For some reason ArduCopter stops when MAVLink is stopped, why?
+    - APM PreARM: RC Not Calibrated (message got when arm throttle)

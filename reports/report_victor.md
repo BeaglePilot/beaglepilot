@@ -244,7 +244,7 @@ Sixth Week
         + 400 Hz: PERF: 3998/4000 8807
         + 100 Hz: PERF: 0/1000 10317
     - Attitude evaluation started. y axis seems inverted. https://groups.google.com/forum/#!topic/drones-discuss/R2u0j-QCUe8
-
+    - ROS-BeaglePilot(ArduPilot) alternatives studied at http://erlerobotics.gitbooks.io/erlerobot/en/mavlink/mavlinkros.html
 
 - Issues:
     - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
@@ -260,13 +260,9 @@ Sixth Week
     - (* out-of-gsoc-scope *) Serial connection (through ttyO*) doesn't work the first time (e.g. if arducopter started from ttyO4 and mavproxy from ttyO5, first time doesn't work, weird characters appeared. If the connection is launched the other way arducopter ttyO5 and mavproxy from ttyO4 then it works). Needs to be further inspected.
     - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
 
-
 - Plans for the next period (this is a list of tasks for the author):
     - tests Sids commit with the scope
-    - Evaluate and compare the different ROS integration mechanisms (mavlink_ros, autopilot_bridge, mavros)
-    - Review SERVO_OUTPUT_RAW, RCInput and RCOutput.
     - testing MS5611 kernel driver
-    - Data from http://uav.tridgell.net/BeaglePilot grab the csv
     - Implement in the UART-like TCP sockets the "*" option.
     - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
     - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o

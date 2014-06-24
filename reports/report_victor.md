@@ -261,6 +261,8 @@ Sixth Week
     - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
 
 - Plans for the next period (this is a list of tasks for the author):
+    - test IMU driver's status, look up possible flaws, report
+    - Read about IMUs and document IMU's ardupilot code
     - tests Sids commit with the scope
     - testing MS5611 kernel driver
     - Implement in the UART-like TCP sockets the "*" option.

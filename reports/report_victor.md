@@ -245,6 +245,15 @@ Sixth Week
         + 100 Hz: PERF: 0/1000 10317
     - Attitude evaluation started. y axis seems inverted. https://groups.google.com/forum/#!topic/drones-discuss/R2u0j-QCUe8
     - ROS-BeaglePilot(ArduPilot) alternatives studied at http://erlerobotics.gitbooks.io/erlerobot/en/mavlink/mavlinkros.html
+    - Erle-board compared with HKPilot. Results show that:
+        - RAW_IMU:
+            + gyro and acel values seem to match expcept the z-axis
+            + same axis in both boards
+            + BeaglePilot has issues with the acel offsets
+        - Attitude
+            + rollspeed seems to be good
+            + pitchspeed not so different
+            + yawspeed, roll, pitch and yaw are different
 
 - Issues:
     - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
@@ -259,10 +268,10 @@ Sixth Week
     - (* out-of-gsoc-scope *) var SERVO_OUTPUT_RAW always with the same value
     - (* out-of-gsoc-scope *) Serial connection (through ttyO*) doesn't work the first time (e.g. if arducopter started from ttyO4 and mavproxy from ttyO5, first time doesn't work, weird characters appeared. If the connection is launched the other way arducopter ttyO5 and mavproxy from ttyO4 then it works). Needs to be further inspected.
     - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
+    - (* out-of-gsoc-scope *) Issues with the attitude estimation in BeaglePilot
 
-- Plans for the next period (this is a list of tasks for the author):
-    - test IMU driver's status, look up possible flaws, report
-    - Read about IMUs and document IMU's ardupilot code
+- Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
+    - Look up the attitude issue. Verify the data from various sensors and try bringing up conclussions.
     - tests Sids commit with the scope
     - testing MS5611 kernel driver
     - Implement in the UART-like TCP sockets the "*" option.

@@ -318,13 +318,17 @@ Seventh Week
     - Test all the other drivers
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
-Questions for the meeting:
-    - "height" messages?
-    - LOOP speed in param?
-    - Why when recompiling it takes so much? Seems like compiles everything once again.
-    - Why when recompiling ArduPilot/ArduPlane the .elf is not updated? Furthermore it takes as much as compiling from a clean status. 
+Things to fix/Questions for the meeting:
+    ok - "height" messages?. Seem to be bad baro stuff. "set altreadout 0" can do it. Put it in the startup script
+    ok - Why when recompiling it takes so much? Seems like compiles everything once again. NTP timing issue. Also check /usr/bin/rdate 192.168.2.15
+    ok - Why when recompiling ArduPilot/ArduPlane the .elf is not updated? Furthermore it takes as much as compiling from a clean status.  NTP issue
     - Discuss PERF results
-    - What's the best way of inverting the y axis?
-    - Attitude interpretation?
+    ok - What's the best way of inverting the y axis?. AHRS_ORIENTATION param
+    ok - Attitude interpretation? start changing http://uav.tridgell.net/BBB/spi_changes.patch
+        Correct SPI http://uav.tridgell.net/BBB/spi_changes.patch. Rebased here https://github.com/tridge/ardupilot/commits/bbb-wip
+        IMPORTANT to change the dts as well. New pins
     - For some reason ArduCopter stops when MAVLink is stopped, why?
     - APM PreARM: RC Not Calibrated (message got when arm throttle)
+    ok - change loop to 200
+    ok - gaccel, ggyro for plotting on Linux the gyros and accel.
+

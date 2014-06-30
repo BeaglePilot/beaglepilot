@@ -304,8 +304,12 @@ Seventh Week
     - (* out-of-gsoc-scope *) Serial connection (through ttyO*) doesn't work the first time (e.g. if arducopter started from ttyO4 and mavproxy from ttyO5, first time doesn't work, weird characters appeared. If the connection is launched the other way arducopter ttyO5 and mavproxy from ttyO4 then it works). Needs to be further inspected.
     - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
     - (* out-of-gsoc-scope *) Issues with the attitude estimation in BeaglePilot
+    - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
+    [27/06/14 14:04:15] Andrew Tridgell: 1) why MPU6000 is giving erratic data on accels. I suspect a driver bug, or hw fault (eg. bad power to MPU6k). We're going to have to start looking with a scope and analysing the SPI traffic to narrow it down
+    [27/06/14 14:04:51] Andrew Tridgell: 2) add RCInput driver (PPM sum or possibly DSM over serial). I don't want to fly without manual control!
+    [27/06/14 14:05:22] Andrew Tridgell: 3) work out why we're not getting GPS. I suspect its just becuse we're not attaching UARTB to the right serial port for the PXF
     - Look up the attitude issue. Verify the data from various sensors and try bringing up conclussions.
     - tests Sids commit with the scope
     - testing MS5611 kernel driver
@@ -320,15 +324,9 @@ Seventh Week
 
 Things to fix/Questions for the meeting:
     ok - "height" messages?. Seem to be bad baro stuff. "set altreadout 0" can do it. Put it in the startup script
-    ok - Why when recompiling it takes so much? Seems like compiles everything once again. NTP timing issue. Also check /usr/bin/rdate 192.168.2.15
-    ok - Why when recompiling ArduPilot/ArduPlane the .elf is not updated? Furthermore it takes as much as compiling from a clean status.  NTP issue
-    - Discuss PERF results
-    ok - What's the best way of inverting the y axis?. AHRS_ORIENTATION param
     ok - Attitude interpretation? start changing http://uav.tridgell.net/BBB/spi_changes.patch
-        Correct SPI http://uav.tridgell.net/BBB/spi_changes.patch. Rebased here https://github.com/tridge/ardupilot/commits/bbb-wip
-        IMPORTANT to change the dts as well. New pins
     - For some reason ArduCopter stops when MAVLink is stopped, why?
     - APM PreARM: RC Not Calibrated (message got when arm throttle)
     ok - change loop to 200
-    ok - gaccel, ggyro for plotting on Linux the gyros and accel.
+    - gaccel, ggyro for plotting on Linux the gyros and accel. where?
 

@@ -289,33 +289,25 @@ Seventh Week
 
 - What has been accomplished?:
     - `mavros` compiled. Necessary to uptade to hydro and compile manually mavlink ROS package.
+    - IMU values reviewed after patches. Looking better
+    - SYS_BOOT pins issue addressed in Erle's board.
+    - More progress on the ROS integration side. http://erlerobotics.gitbooks.io/erlerobot/en/mavlink/ros/mavros.html
+        From what has been tested so far it seem that `mavros` and `autopilot_bridge` are quite promising. Good reasoning on the decisions made is available at https://groups.google.com/forum/#!searchin/drones-discuss/ROS/drones-discuss/o7Z5UWlpMlQ/54X0cv5oaSAJ. The trend is to push forward a smarter ROS<->mavlink adapter.
+    - `mavlink` catkin ROS package .deb generated and pushed to https://github.com/vmayoral/ros-stuff/tree/master/deb
 
 - Issues:
     - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
     - (* out-of-gsoc-scope *) Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
     -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
-    - (* out-of-gsoc-scope *) Issue with the GCS parameters (refer to https://groups.google.com/forum/#!topic/beaglepilot/dQlxse11JNI). There's also the UARTDriver to be checked.
     - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
-    - (* out-of-gsoc-scope *) ArduPlane makes the board gets stucked. A lot of messages with:
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-            RCOutput: PWM Write Failed!
-    - (* out-of-gsoc-scope *) var SERVO_OUTPUT_RAW always with the same value
-    - (* out-of-gsoc-scope *) Serial connection (through ttyO*) doesn't work the first time (e.g. if arducopter started from ttyO4 and mavproxy from ttyO5, first time doesn't work, weird characters appeared. If the connection is launched the other way arducopter ttyO5 and mavproxy from ttyO4 then it works). Needs to be further inspected.
-    - (* out-of-gsoc-scope *) SYS_BOOT pins of the BBB conflict with PixFire Hawk Cape design
-    - (* out-of-gsoc-scope *) Issues with the attitude estimation in BeaglePilot
     - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
-    [27/06/14 14:04:15] Andrew Tridgell: 1) why MPU6000 is giving erratic data on accels. I suspect a driver bug, or hw fault (eg. bad power to MPU6k). We're going to have to start looking with a scope and analysing the SPI traffic to narrow it down
-    [27/06/14 14:04:51] Andrew Tridgell: 2) add RCInput driver (PPM sum or possibly DSM over serial). I don't want to fly without manual control!
-    [27/06/14 14:05:22] Andrew Tridgell: 3) work out why we're not getting GPS. I suspect its just becuse we're not attaching UARTB to the right serial port for the PXF
-    - Look up the attitude issue. Verify the data from various sensors and try bringing up conclussions.
+    - (tridge) why MPU6000 is giving erratic data on accels. I suspect a driver bug, or hw fault (eg. bad power to MPU6k). We're going to have to start looking with a scope and analysing the SPI traffic to narrow it down
+    - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
     - tests Sids commit with the scope
-    - testing MS5611 kernel driver
     - Implement in the UART-like TCP sockets the "*" option.
     - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
-    - Correct LSM using tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
@@ -324,9 +316,8 @@ Seventh Week
 
 Things to fix/Questions for the meeting:
     ok - "height" messages?. Seem to be bad baro stuff. "set altreadout 0" can do it. Put it in the startup script
-    ok - Attitude interpretation? start changing http://uav.tridgell.net/BBB/spi_changes.patch
-    - For some reason ArduCopter stops when MAVLink is stopped, why?
     - APM PreARM: RC Not Calibrated (message got when arm throttle)
-    ok - change loop to 200
     - gaccel, ggyro for plotting on Linux the gyros and accel. where?
+    - meaning of ATTITUDE values? 
+    - what's the deal with the logs?
 

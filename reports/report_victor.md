@@ -317,7 +317,41 @@ Seventh Week
 Things to fix/Questions for the meeting:
     ok - "height" messages?. Seem to be bad baro stuff. "set altreadout 0" can do it. Put it in the startup script
     - APM PreARM: RC Not Calibrated (message got when arm throttle)
-    - gaccel, ggyro for plotting on Linux the gyros and accel. where?
+    - meaning of ATTITUDE values? 
+    - what's the deal with the logs?
+
+
+Eighth Week
+------
+
+- What has been accomplished?:
+    - Reviewed driver from ST http://www.st.com/web/en/catalog/tools/FM147/CL1818/SC1885?sc=mems-drivers. All of the provided ones are I2C-based. According to tridge the impl can be based on a mixture between lsm303d and l3gd20 but the first one is not implemmented in APM.
+    - MPU6K AHRS evaluated https://www.youtube.com/watch?v=QoPwKTos7B4&feature=youtu.be
+    - MPU6K further inspected http://erlerobot.com/blog/beaglepilot-comparing-erle-board-apm2/
+
+- Issues:
+    - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - (* out-of-gsoc-scope *) Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
+    - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
+    - (* out-of-gsoc-scope *) APM2 doesn't compile with BeaglePilot/ardupilot code. Something broke down
+
+- Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
+    - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
+    - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
+    - tests Sids commit with the scope
+    - Implement in the UART-like TCP sockets the "*" option.
+    - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
+    - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
+    - Make the drivers platform agnostic.
+    - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
+    - Test all the other drivers
+    - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
+
+Things to fix/Questions for the meeting:
+    - "height" messages?. Seem to be bad baro stuff. "set altreadout 0" can do it. Put it in the startup script
+    - APM PreARM: RC Not Calibrated (message got when arm throttle)
     - meaning of ATTITUDE values? 
     - what's the deal with the logs?
 

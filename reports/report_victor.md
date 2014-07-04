@@ -328,6 +328,8 @@ Eighth Week
     - Reviewed driver from ST http://www.st.com/web/en/catalog/tools/FM147/CL1818/SC1885?sc=mems-drivers. All of the provided ones are I2C-based. According to tridge the impl can be based on a mixture between lsm303d and l3gd20 but the first one is not implemmented in APM.
     - MPU6K AHRS evaluated https://www.youtube.com/watch?v=QoPwKTos7B4&feature=youtu.be
     - MPU6K further inspected http://erlerobot.com/blog/beaglepilot-comparing-erle-board-apm2/
+    - Storage and logs fixed. Refer to commits 0a682383cd23d7b93fefa3ca1584ce989a68320b and posteriors.
+
 
 - Issues:
     - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
@@ -338,9 +340,11 @@ Eighth Week
     - (* out-of-gsoc-scope *) APM2 doesn't compile with BeaglePilot/ardupilot code. Something broke down
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
+    - ESC calibration script
     - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
     - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
-    - tests Sids commit with the scope
+    - orientation fix
+    - PRU 2 issues
     - Implement in the UART-like TCP sockets the "*" option.
     - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
@@ -350,8 +354,38 @@ Eighth Week
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
 Things to fix/Questions for the meeting:
-    - "height" messages?. Seem to be bad baro stuff. "set altreadout 0" can do it. Put it in the startup script
-    - APM PreARM: RC Not Calibrated (message got when arm throttle)
-    - meaning of ATTITUDE values? 
-    - what's the deal with the logs?
+    - startup script, automatically loading it?. Option when launching mavproxy
+    - Check the SPI bus with the scope, 3V signal, MOSI
 
+    Validating the accels:
+    [09:35] (Canal)tridge: X == forward
+    [09:35] (Canal)tridge: Y = right
+    [09:35] (Canal)tridge: Z = down
+    [09:35] (Canal)tridge: so, flat on desk, X=0, Y=0, Z=-10
+    [09:35] (Canal)tridge: on right side: X=0, Y=-10, Z=0
+    [09:36] (Canal)tridge: on nose down: X=-10, Y=0, Z=0
+    [09:36] (Canal)tridge: RAW_IMU.xacc RAW_IMU.yacc RAW_IMU.zacc
+    [09:36] (Canal)tridge: so use gaccel
+    [09:37] (Canal)tridge: on left side: X=0, Y=10, Z=0
+    [09:37] (Canal)tridge: nose up: X=10,Y=0,Z=0
+
+    next thing is the orientation of the gyros
+    [09:38] (Canal)tridge: while rotating right (right roll), X=+ve, Y=0, Z=0 (gyro)
+
+    - grab mavproxy new one
+
+    - AHRS_ORIENTATION is the param for the quick fix.
+    - the right thing to do it is to create a function into AP_HAL to create a function that returns the subkind of board (ERLE, PXF, ...) and then
+    use the function within AP_InertialSensor_MPU6000 to rotate the vectors accordingly
+    modificar línea "    _accel[0].rotate(_board_orientation);"
+    --------
+    la rotación que necesito es 110 ROLL, 70 PITCH
+    -------
+    libraries/AP_Math/rotations.h for rotations
+    libraries/AP_Math/vector3.cpp
+
+    ESC calibration
+    when powered up if the PWM is more than 1500 they assume they are in calibration mode. Beep-Beep-Beep
+
+
+   Finish the PRU update thing 

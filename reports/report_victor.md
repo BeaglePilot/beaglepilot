@@ -329,6 +329,10 @@ Eighth Week
     - MPU6K AHRS evaluated https://www.youtube.com/watch?v=QoPwKTos7B4&feature=youtu.be
     - MPU6K further inspected http://erlerobot.com/blog/beaglepilot-comparing-erle-board-apm2/
     - Storage and logs fixed. Refer to commits 0a682383cd23d7b93fefa3ca1584ce989a68320b and posteriors.
+    - Support added for MPU9250
+    - Problems with MPU6000 narrowed down. It seems the issues are hardware related. Probably some capacitors should be changes in the design.
+    - PXF received and set up. 
+    - ROS installed in Debian http://erlerobotics.gitbooks.io/erlerobot/en/ros/tutorials/rosinstall.html
 
 
 - Issues:
@@ -338,13 +342,15 @@ Eighth Week
     - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
     - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
     - (* out-of-gsoc-scope *) APM2 doesn't compile with BeaglePilot/ardupilot code. Something broke down
+    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU6000. Caps need to be changed according to datasheet.
+    - (* out-of-gsoc-scope *) Issue with PWM generation. 
+
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
-    - ESC calibration script
-    - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o
+    - Reinstall all the ROS-ardupilot related packages in Debian.
+    - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o. Review the registers configuration.
     - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
     - orientation fix
-    - PRU 2 issues
     - Implement in the UART-like TCP sockets the "*" option.
     - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
@@ -354,38 +360,4 @@ Eighth Week
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
 Things to fix/Questions for the meeting:
-    - startup script, automatically loading it?. Option when launching mavproxy
-    - Check the SPI bus with the scope, 3V signal, MOSI
 
-    Validating the accels:
-    [09:35] (Canal)tridge: X == forward
-    [09:35] (Canal)tridge: Y = right
-    [09:35] (Canal)tridge: Z = down
-    [09:35] (Canal)tridge: so, flat on desk, X=0, Y=0, Z=-10
-    [09:35] (Canal)tridge: on right side: X=0, Y=-10, Z=0
-    [09:36] (Canal)tridge: on nose down: X=-10, Y=0, Z=0
-    [09:36] (Canal)tridge: RAW_IMU.xacc RAW_IMU.yacc RAW_IMU.zacc
-    [09:36] (Canal)tridge: so use gaccel
-    [09:37] (Canal)tridge: on left side: X=0, Y=10, Z=0
-    [09:37] (Canal)tridge: nose up: X=10,Y=0,Z=0
-
-    next thing is the orientation of the gyros
-    [09:38] (Canal)tridge: while rotating right (right roll), X=+ve, Y=0, Z=0 (gyro)
-
-    - grab mavproxy new one
-
-    - AHRS_ORIENTATION is the param for the quick fix.
-    - the right thing to do it is to create a function into AP_HAL to create a function that returns the subkind of board (ERLE, PXF, ...) and then
-    use the function within AP_InertialSensor_MPU6000 to rotate the vectors accordingly
-    modificar línea "    _accel[0].rotate(_board_orientation);"
-    --------
-    la rotación que necesito es 110 ROLL, 70 PITCH
-    -------
-    libraries/AP_Math/rotations.h for rotations
-    libraries/AP_Math/vector3.cpp
-
-    ESC calibration
-    when powered up if the PWM is more than 1500 they assume they are in calibration mode. Beep-Beep-Beep
-
-
-   Finish the PRU update thing 

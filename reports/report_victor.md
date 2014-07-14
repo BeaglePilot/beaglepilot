@@ -381,6 +381,15 @@ Ninth Week
     - Test whoami of the new LSM
     - Reinstall all the ROS-ardupilot related packages in Debian.
     - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o. Review the registers configuration.
+    - Rework the 9250
+    (tridge) i think we should re-work the 9250 driver to use the time based wait_for_sample(), add the dual-pole filtering and try sampling at 1KHz
+    (tridge) that will raise the SPI load a lot (by factor of 5x), but should reduce the time spent in wait_for_sample()
+    (tridge) to make that work we'll need to change LinuxScheduler::_timer_thread() to not drift in time
+    (tridge) right now it just does _microsleep(1000) between calls
+    (tridge) it will need to instead have a "next_timer_tick" and sleep the right number of microseconds for that deadline
+    (tridge) that will be needed to ensure we don't lose any ticks, and that we average 1kHz
+    (tridge) later I think we'll need a thread per SPI bus, with an API to ask for regular transfers
+
     - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
     - orientation fix
     - Implement in the UART-like TCP sockets the "*" option.
@@ -392,4 +401,5 @@ Ninth Week
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
 Things to fix/Questions for the meeting:
+
 

@@ -365,6 +365,10 @@ Ninth Week
 ------
 
 - What has been accomplished?:
+    - PWM checked. Works fine after modifications but AP_Motor_tests doesn't work properly.
+    - Tested the WHO_AM_I of the different sensors: https://gist.github.com/vmayoral/502da526bd7b81b0f3d6. LSM doesn't seem to respond.
+    - Issue detected with MPU9250 with new firmware. Gyros not responding
+    - Power down issue when connecting/disconnecting batteries. Refer to the issue description
 
 
 - Issues:
@@ -374,6 +378,9 @@ Ninth Week
     - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
     - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
     - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU6000. Caps need to be changed according to datasheet.
+    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding.
+    - (* out-of-gsoc-scope *) BBB spuriously shutsdown as if power button is pressed when connecting/disconnecting batteries. Related to http://bugs.elinux.org/issues/85. 
+    - Issue with the Language in Debian "-bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.utf8)"
 
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
@@ -389,7 +396,6 @@ Ninth Week
     (tridge) it will need to instead have a "next_timer_tick" and sleep the right number of microseconds for that deadline
     (tridge) that will be needed to ensure we don't lose any ticks, and that we average 1kHz
     (tridge) later I think we'll need a thread per SPI bus, with an API to ask for regular transfers
-
     - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
     - orientation fix
     - Implement in the UART-like TCP sockets the "*" option.

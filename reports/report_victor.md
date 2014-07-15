@@ -369,6 +369,7 @@ Ninth Week
     - Tested the WHO_AM_I of the different sensors: https://gist.github.com/vmayoral/502da526bd7b81b0f3d6. LSM doesn't seem to respond.
     - Issue detected with MPU9250 with new firmware. Gyros not responding. Tried different bus rates, same result. NOTE: When the low speed is set below 1 GHz the sensor doesn't even seem to respond.
     - Power down issue when connecting/disconnecting batteries. Refer to the issue description
+    - Issue with ROS installation in Debian when reproducing http://answers.ros.org/question/186643/ros-debian-in-the-bbb/. Answered in the thread, solution was using a different way of installing the packages than the one described in the official docs.. Answered in the thread, solution was using a different way of installing the packages than the one described in the official docs.
 
 
 - Issues:
@@ -381,7 +382,7 @@ Ninth Week
     - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding.
     - (* out-of-gsoc-scope *) BBB spuriously shutsdown as if power button is pressed when connecting/disconnecting batteries. Related to http://bugs.elinux.org/issues/85. 
     - Issue with the Language in Debian "-bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.utf8)"
-    - Issue with ROS installation in Debian when reproducing http://answers.ros.org/question/186643/ros-debian-in-the-bbb/
+
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
     - test that PWM fixes work

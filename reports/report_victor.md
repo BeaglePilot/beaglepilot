@@ -14,12 +14,12 @@ The following table pictures the status of the goals:
 | Goal | Status |
 |------|--------|
 | MPU-9150 (I2C) userspace driver (extra) | Working |
-| MPU-9250 (SPI) userspace driver | Coded |
+| MPU-9250 (SPI) userspace driver | Working |
 | LSM9DS0 (SPI) userspace driver | Coded |
 | PRU PWM | Working |
 | Realtime Comparison | Working (Done) |
-| ROS tests with `mavlink_ros` | TBD |
-| ROS bridge coded directly in the ArduPilot | TBD |
+| ROS tests with `mavlink_ros` | Working |
+| ROS - ardupilot packages evaluated | Working |
 | IDE Integration | WIP | 
 | Security | TBD |
 
@@ -385,10 +385,7 @@ Ninth Week
     - Issue with the Language in Debian "-bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.utf8)". For now fixed with https://gist.github.com/vmayoral/44d6d9f93ac4504f711b
 
 
-- Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
-    - test that PWM fixes work
-    - Test whoami of the new LSM
-    - Reinstall all the ROS-ardupilot related packages in Debian.
+- Plans for the next period:
     - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
     - Rework the 9250
     (tridge) i think we should re-work the 9250 driver to use the time based wait_for_sample(), add the dual-pole filtering and try sampling at 1KHz

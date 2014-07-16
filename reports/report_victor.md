@@ -370,7 +370,7 @@ Ninth Week
     - Issue detected with MPU9250 with new firmware. Gyros not responding. Tried different bus rates, same result. NOTE: When the low speed is set below 1 GHz the sensor doesn't even seem to respond.
     - Power down issue when connecting/disconnecting batteries. Refer to the issue description
     - Issue with ROS installation in Debian when reproducing http://answers.ros.org/question/186643/ros-debian-in-the-bbb/. Answered in the thread, solution was using a different way of installing the packages than the one described in the official docs.. Answered in the thread, solution was using a different way of installing the packages than the one described in the official docs.
-    - ROS installed in Debian. 
+    - ROS installed in Debian. Refer to http://erlerobotics.gitbooks.io/erlerobot/en/ros/tutorials/rosinstall.html
 
 
 - Issues:

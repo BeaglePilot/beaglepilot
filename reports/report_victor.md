@@ -370,6 +370,7 @@ Ninth Week
     - Issue detected with MPU9250 with new firmware. Gyros not responding. Tried different bus rates, same result. NOTE: When the low speed is set below 1 GHz the sensor doesn't even seem to respond.
     - Power down issue when connecting/disconnecting batteries. Refer to the issue description
     - Issue with ROS installation in Debian when reproducing http://answers.ros.org/question/186643/ros-debian-in-the-bbb/. Answered in the thread, solution was using a different way of installing the packages than the one described in the official docs.. Answered in the thread, solution was using a different way of installing the packages than the one described in the official docs.
+    - ROS installed in Debian. 
 
 
 - Issues:
@@ -379,16 +380,16 @@ Ninth Week
     - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
     - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
     - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU6000. Caps need to be changed according to datasheet.
-    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding.
+    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding. Seems to be a hardware issue.
     - (* out-of-gsoc-scope *) BBB spuriously shutsdown as if power button is pressed when connecting/disconnecting batteries. Related to http://bugs.elinux.org/issues/85. 
-    - Issue with the Language in Debian "-bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.utf8)"
+    - Issue with the Language in Debian "-bash: warning: setlocale: LC_ALL: cannot change locale (en_GB.utf8)". For now fixed with https://gist.github.com/vmayoral/44d6d9f93ac4504f711b
 
 
 - Plans for the next period (this is a list of tasks for , roll, pitch and yaw are differentthe author):
     - test that PWM fixes work
     - Test whoami of the new LSM
     - Reinstall all the ROS-ardupilot related packages in Debian.
-    - Push forward the LSM driver. Take into account tridge's comments https://groups.google.com/forum/#!topic/drones-discuss/tIKbvIsWg1o. Review the registers configuration.
+    - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
     - Rework the 9250
     (tridge) i think we should re-work the 9250 driver to use the time based wait_for_sample(), add the dual-pole filtering and try sampling at 1KHz
     (tridge) that will raise the SPI load a lot (by factor of 5x), but should reduce the time spent in wait_for_sample()
@@ -397,16 +398,11 @@ Ninth Week
     (tridge) it will need to instead have a "next_timer_tick" and sleep the right number of microseconds for that deadline
     (tridge) that will be needed to ensure we don't lose any ticks, and that we average 1kHz
     (tridge) later I think we'll need a thread per SPI bus, with an API to ask for regular transfers
-    - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
-    - orientation fix
     - Implement in the UART-like TCP sockets the "*" option.
     - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
     - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
     - Make the drivers platform agnostic.
     - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
-    - Test all the other drivers
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
 Things to fix/Questions for the meeting:
-
-

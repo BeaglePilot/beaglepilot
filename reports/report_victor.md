@@ -408,7 +408,11 @@ Tenth Week
 ------
 
 - What has been accomplished?:
+    - Code merged with with ardupilot. From this point and periodically progresses will be merged there.
     - l3gd20 userspace driver coded https://github.com/BeaglePilot/ardupilot/commit/d62cd263cc10d8fb182ae39e44475fd5627a5cb8
+    - hardware issues on the PXF notified https://github.com/diydrones/PXF/issues?state=open
+    - separate l3gd20 from the traditional AP_InertialSensor line
+    - started coding lsm303d
 
 
 - Issues:
@@ -417,16 +421,18 @@ Tenth Week
     -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
     - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
     - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
-    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU6000. Caps need to be changed according to datasheet.
     - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding. Seems to be a hardware issue.
     - (* out-of-gsoc-scope *) BBB spuriously shutsdown as if power button is pressed when connecting/disconnecting batteries. Related to http://bugs.elinux.org/issues/85. Can be dealt removing acpid.
     - (* out-of-gsoc-scope *) Seems that the PXFs capes are in a bad shape so we might need to redo them.
 
 
 - Plans for the next period:
-    - make the l3gd20 and independent class that doesn't inherit from AP_InertialSensor (avoid unncecessary inheritance)
-    - Look at the  lsm303d and l3gd20 drivers in the PX4Firmware tree See https://github.com/diydrones/PX4Firmware
-    - Rework the 9250
+    - Review l3gd20 and lsm303d implementations. Code the LSM9D on top of these two.
+    - Documentation and tutorials.
+    - Prepare final material to be submitted.
+
+    - (* out-of-gsoc-scope *) GSOC scope probably won't allow to include these tasks. Still they will be implemented and the project will keep evolving through diydrones/ardupilot repository.
+    - Rework the MPU9250
     (tridge) i think we should re-work the 9250 driver to use the time based wait_for_sample(), add the dual-pole filtering and try sampling at 1KHz
     (tridge) that will raise the SPI load a lot (by factor of 5x), but should reduce the time spent in wait_for_sample()
     (tridge) to make that work we'll need to change LinuxScheduler::_timer_thread() to not drift in time

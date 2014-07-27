@@ -448,3 +448,44 @@ Tenth Week
     - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.
 
 Things to fix/Questions for the meeting:
+
+
+Eleventh Week
+------
+
+- What has been accomplished?:
+    - Finished coding lsm303d
+
+
+- Issues:
+    - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - (* out-of-gsoc-scope *) Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
+    - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
+    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding. Seems to be a hardware issue.
+    - (* out-of-gsoc-scope *) BBB spuriously shutsdown as if power button is pressed when connecting/disconnecting batteries. Related to http://bugs.elinux.org/issues/85. Can be dealt removing acpid.
+    - (* out-of-gsoc-scope *) Seems that the PXFs capes are in a bad shape so we might need to redo them.
+
+
+- Plans for the next period:
+    - Review l3gd20 and lsm303d implementations. Code the LSM9D on top of these two.
+    - Documentation and tutorials.
+    - Prepare final material to be submitted.
+
+- Out of the scope:
+    - (* out-of-gsoc-scope *) GSOC scope probably won't allow to include these tasks. Still they will be implemented and the project will keep evolving through diydrones/ardupilot repository.
+    - Rework the MPU9250
+    (tridge) i think we should re-work the 9250 driver to use the time based wait_for_sample(), add the dual-pole filtering and try sampling at 1KHz
+    (tridge) that will raise the SPI load a lot (by factor of 5x), but should reduce the time spent in wait_for_sample()
+    (tridge) to make that work we'll need to change LinuxScheduler::_timer_thread() to not drift in time
+    (tridge) right now it just does _microsleep(1000) between calls
+    (tridge) it will need to instead have a "next_timer_tick" and sleep the right number of microseconds for that deadline
+    (tridge) that will be needed to ensure we don't lose any ticks, and that we average 1kHz
+    (tridge) later I think we'll need a thread per SPI bus, with an API to ask for regular transfers
+    - Implement in the UART-like TCP sockets the "*" option.
+    - Flight tests (play around with RCInput in AP_HAL_Linux, ask Anuj about status)
+    - Finish up the I2C driver to accept a bus number. Multi-i2c-aware driver.
+    - Make the drivers platform agnostic.
+    - Code AP_InertialSensor/AP_InertialSensor_Linux.cpp driver which acts as a front end for multiple hardware drivers
+    - Ideas about the new AP_HAL_Linux (using dedicted threads for each SPI, etc.). Discuss in more detail with @tridge.

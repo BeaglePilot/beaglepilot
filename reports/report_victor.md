@@ -455,6 +455,7 @@ Eleventh Week
 
 - What has been accomplished?:
     - Finished coding lsm303d
+    - Docs starting to shape up at http://erlerobotics.gitbooks.io/erlerobot/en/beaglepilot/BeaglePilot.html
 
 
 - Issues:
@@ -469,7 +470,6 @@ Eleventh Week
 
 
 - Plans for the next period:
-    - Review l3gd20 and lsm303d implementations. Code the LSM9D on top of these two.
     - Documentation and tutorials.
     - Prepare final material to be submitted.
 

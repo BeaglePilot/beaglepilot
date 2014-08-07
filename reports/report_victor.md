@@ -20,8 +20,8 @@ The following table pictures the status of the goals:
 | Realtime Comparison | Working (Done) |
 | ROS tests with `mavlink_ros` | Working |
 | ROS - ardupilot packages evaluated | Working |
-| IDE Integration | WIP | 
-| Security | TBD |
+| IDE Integration | Cloud 9 and Codiad tested. Not more effort into this| 
+| Security | Left aside|
 
 Possible status: `TBD`, `WIP`, `Coded` and `Working`.
 

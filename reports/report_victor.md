@@ -533,3 +533,20 @@ Twelph Week
 - Things to discuss in the next meeting:
     - pthreads in arduino? Impl can be seen in the Arduino AP_HAL
 
+Thirteenth Week
+------
+
+- What has been accomplished?:
+    - Documentation and tutorials finished
+    - Final video avaiable at https://www.youtube.com/watch?v=irROS-2n0mU
+
+- Issues:
+    - (* out-of-gsoc-scope *) RT_PREEMPT kernel and capemgr conflict. Documented [here](http://erlerobot.com/blog/beaglepilot-stone-road-pru-rt_preempt-patch/). Dicussion about this topic [here](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo). The Xenomai kernel doesn't suffer from these errors. For now the RT_PREEMPT issue is left asside to continue with the goals (not within the GSOC goals). The capemgr won't be use in the longer term thereby we skip the issue.
+    - (* out-of-gsoc-scope *) Issue with the MPU9150 sensor driver. Refer to [this fix](https://github.com/BeaglePilot/ardupilot/commit/400f71226e0828d2ea285a469b566e25b8b5a7db).
+    -  (* out-of-gsoc-scope *) I2C Barometer MS5611 not detected. Seems like a hardware/design issue. Present both in the robot Erle and the PXF. 
+    - (* out-of-gsoc-scope *) Issue when used with MAVProxy, probably related to the fact that RCin hasn't been reviewed yet.
+    - (* out-of-gsoc-scope *) Commit [3c4062a7961a70b6ec46266d265d322ac0b9dd8f](https://github.com/BeaglePilot/ardupilot/commit/3c4062a7961a70b6ec46266d265d322ac0b9dd8f) creates conflicts with the ESCs tested.
+    - (* out-of-gsoc-scope *) Issue with the IMU sensor MPU9250. Gyros not responding. Seems to be a hardware issue.
+    - (* out-of-gsoc-scope *) BBB spuriously shutsdown as if power button is pressed when connecting/disconnecting batteries. Related to http://bugs.elinux.org/issues/85. Can be dealt removing acpid.
+    - (* out-of-gsoc-scope *) Seems that the PXFs capes are in a bad shape so we might need to redo them.
+

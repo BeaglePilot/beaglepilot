@@ -3,11 +3,16 @@ BeaglePilot:
 
 BeaglePilot project aims to create the first Linux-based autopilot for flying robots using the BeagleBone and the BeagleBone Black as the "hardware blueprint". For this purpose the project will focus on integrating ArduPilot (most popular autopilot) in the BeagleBone (Black). 
 
+----
+
+18th of August 2014, first flight with BeaglePilot with a Plane, performed in Australia by Andrew Tridgell.
+
+----
 
 Status
 ------
 
-The following table sumarizes the *driver development status*:
+The following table sumarizes the *driver development status*. Feel free to grab one and help us further develop this:
 
 | Milestone | Status |
 | ----------|--------|
@@ -18,7 +23,7 @@ The following table sumarizes the *driver development status*:
 | LSM9DS0 SPI userspace driver | Coded |
 | MPU9250 SPI userspace driver | Coded |
 | MS5611 I2C/SPI userspace driver | Ok |
-| GPIO userspace driver | WIP |
+| GPIO userspace driver | Ok |
 | I2CDriver multi-bus aware | WIP |
 | AP_InertialSensor_Linux | ToDo |
 | PRU PWM driver | Ok ([issue](https://groups.google.com/forum/#!topic/beaglepilot/7DKcdm0AEPo) with the PREEMPT_RT kernel) |

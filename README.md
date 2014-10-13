@@ -3,6 +3,34 @@ BeaglePilot:
 
 BeaglePilot project aims to create the first Linux-based autopilot for flying robots using the BeagleBone and the BeagleBone Black as the "hardware blueprint". For this purpose the project will focus on integrating ArduPilot (most popular autopilot) in the BeagleBone (Black). 
 
+The conclusion of this work is presented in a final publication: [Towards an Open Source Linux autopilot for drones](files/APM-paper.pdf) accepted at [LibreCon 2014](http://www.libresoftwareworldconference.com/):
+![](files/APM-paper-capture.png)
+
+
+How to cite our work
+-------------
+
+##### Conventional citation
+```
+V. Mayoral,  S. Bharat, P. Rowse, A. Hernández, B. Mazzolai. "Towards an open sourcelinux autopilot for drones". "LibreCon 2014", 10 2014.
+```
+
+##### BibTex format
+```
+@conference{paperconf,
+  author       = {V\'{i}ctor Mayoral Vilches, Siddharth Bharat Purohit, Philip Rowse, Alejandro Hernández Cordero, Barbara Mazzolai}, 
+  title        = {Towards an Open Source Linux autopilot for drones},
+  year         = 2014,
+  month        = 10,
+  organization = {LibreCon 2014},
+}
+
+```
+
+##### Comments
+We'd be happy to address any comments. Please submit a [new issue](https://github.com/BeaglePilot/beaglepilot/issues/new).
+
+
 ----
 
 18th of August 2014, first flight with BeaglePilot with a Plane, performed in Australia by Andrew Tridgell.
@@ -61,6 +89,12 @@ Test Platforms:
 BeaglePilot is currently being tested using the following drones:
 - [Erle Robot](http://erlerobot.com)
 - BeagleBone Black + PixHawk Fire Cape
+
+
+Acknowledgements
+---------
+This work would not have been possible without the support of many people such as Kevin Hester, Lorenz Meier, Ben Nizette, Jimmy Johnson and Daniel Frenzel. Special thanks to the APM developers and particularly to Andrew Tridgell which has been our main source of  support and guidance. We would also like to metion the fantastic support offered by Beagleboard.org developers Jason Kridner, Pantelis Antoniou and their community. The authors would also like to convey thanks to  Beagleboard.org, Google, 3DRobotics and Erle Robotics for providing financial means and material. 
+
 
 Communication & Resources:
 --------------

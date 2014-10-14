@@ -3,7 +3,7 @@ BeaglePilot:
 
 BeaglePilot project aims to create the first Linux-based autopilot for flying robots using the BeagleBone and the BeagleBone Black as the "hardware blueprint". For this purpose the project will focus on integrating ArduPilot (most popular autopilot) in the BeagleBone (Black). 
 
-The conclusion of this work is presented in a final publication: [Towards an Open Source Linux autopilot for drones](files/APM-paper.pdf) accepted at [LibreCon 2014](http://www.libresoftwareworldconference.com/):
+The conclusion of this work is presented in a final publication: [Towards an Open Source Linux autopilot for drones](https://github.com/BeaglePilot/beaglepilot/blob/master/files/APM_Linux.pdf?raw=true) accepted at [LibreCon 2014](http://www.libresoftwareworldconference.com/):
 ![](files/APM-paper-capture.png)
 
 

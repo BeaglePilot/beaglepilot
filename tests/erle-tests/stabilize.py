@@ -20,7 +20,7 @@ from motors import Motor
 """
 def limitThrust(thrust):
     if thrust > 100:
-        thrush = 100
+        thrust = 100
     elif thrust < -100:
         thrust = -100
     return thrust

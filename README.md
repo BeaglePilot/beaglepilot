@@ -17,7 +17,7 @@ V. Mayoral,  S. Bharat, P. Rowse, A. Hernández, B. Mazzolai. "Towards an open s
 
 ##### BibTex format
 ```
-@conference{paperconf,
+@conference{beaglepilot,
   author       = {V\'{i}ctor Mayoral Vilches, Siddharth Bharat Purohit, Philip Rowse, Alejandro Hernández Cordero, Barbara Mazzolai}, 
   title        = {Towards an Open Source Linux autopilot for drones},
   year         = 2014,

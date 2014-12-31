@@ -92,9 +92,9 @@ GSOC Frame:
 
 Test Platforms:
 -----------
-BeaglePilot is currently being tested using the following drones:
-- [Erle Robot](http://erlerobot.com)
-- BeagleBone Black + PixHawk Fire Cape
+BeaglePilot project is currently available through the following solutions:
+- [Erle-brain](https://erlerobotics.com/blog/product/erle-brain/)
+- [PixHawk Fire Cape](https://erlerobotics.com/blog/product/pixhawk-fire-cape/)
 
 
 Acknowledgements

@@ -3,7 +3,11 @@ BeaglePilot:
 
 ----
 
-[Erle-brain](http://erlerobotics.com/blog/product/erle-brain) is now commercially available. A Linux autopilot using the work of BeaglePilot.
+Several commercial products spinned out of BeaglePilot. The following products
+are the recommended choices:
+
+- [Erle-Brain 2](http://erlerobotics.com/blog/erle-brain-2/) 
+- [PXFmini](http://erlerobotics.com/blog/pxfmini/)
 
 ----
 
